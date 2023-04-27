@@ -26,6 +26,8 @@
 - array: 배열을 나타낸다.
 - classes: 클래스를 나타낸다.
 - object: 객체를 나타낸다.
+![image](https://user-images.githubusercontent.com/75515697/234742479-41368f05-cac0-4ff6-a42a-39b42a473c60.png)
+
 
 ### 자바스크립트는 동적 타입이다.
 - JavaScript는 느슨한 타입(loosely typed)의 동적(dynamic) 언어이다.
