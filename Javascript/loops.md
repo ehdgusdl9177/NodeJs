@@ -102,3 +102,4 @@ location.map(function (location) {
 - For 루프는 필요한 경우 break문을 사용하여 for문을 중단할 수 있지만 forEach에서는 이와 같은 작업을 수행할 수 없다.
 - For 루프는 await와 함께 작동되지만 forEach는 await와 완벽하게 작동하지 않는다.
 - For 루프를 사용한 성능은 ForEach 루프보다 빠르다.
+![image](https://user-images.githubusercontent.com/75515697/234778133-bbc01fcc-bf8a-47a2-9355-3f1472c41e23.png)
