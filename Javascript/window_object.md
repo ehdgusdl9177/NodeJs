@@ -8,6 +8,8 @@
 1. 브라우저의 창에 대한 정보를 알 수 있고, 이 창을 제어할 수도 있다.
 2. 또한 var 키워드로 변수를 선언하거나 함수를 선언하면 이 window 객체의 프로퍼티가 된다.
 
+<img width="726" alt="스크린샷 2023-06-28 오후 2 58 14" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/59898eda-b081-4e39-b862-c46e68b1b7b0">
+
 ## Window Object 사용
 
 ```js
