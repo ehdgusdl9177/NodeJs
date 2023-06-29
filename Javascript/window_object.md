@@ -71,3 +71,31 @@ val = window.navigator.language;
 
 console.log(val);
 ```
+
+### Web API
+
+```js
+// Browser Object Model (BOM)
+window.location
+window.navigator
+window.history
+window.screen
+등등...
+
+// Document Object Model (DOM)
+window.document
+```
+
+### var로 선언해서 window 객체의 프로퍼티로 만들기
+
+```js
+var greeting = "hello";
+// let과 const는 블록 스코프이기에 window 객체 내부의 블록에서 선언된 것으로 되기에 전역 객체의 프로퍼티로 활용될 수 없다.
+
+function doGreeting() {
+  return gretting;
+}
+
+console.log(window.greeting); // hello
+console.log(window.doGreeting()); // hello
+```
