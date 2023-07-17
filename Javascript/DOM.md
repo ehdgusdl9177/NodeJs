@@ -27,4 +27,4 @@
 - 브라우저가 서버에서 페이지에 대한 HTML 응답을 받고 화면에 표시하기 전에 여러 단계가 있다
 - 웹 브라우저가 HTML 문서를 읽고. 스타일 입히고 뷰포트에 표시하는 과정이다.
 
-<img width="619" alt="스크린샷 2023-07-17 오후 2 55 46" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/6fe01aa3-3c65-4df9-aabe-259986188efd">
+<img width="661" alt="스크린샷 2023-07-17 오후 2 59 37" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/d12f7bc1-a05e-48b7-96b3-ea12c5e58e90">
