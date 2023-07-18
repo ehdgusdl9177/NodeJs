@@ -241,3 +241,5 @@ console.log(val);
   ```
 
 ### innerHTML vs innerText vs textContent
+<img width="479" alt="스크린샷 2023-07-18 오후 1 44 37" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/4cc1ce11-a363-4136-80b1-faec07966340">
+
