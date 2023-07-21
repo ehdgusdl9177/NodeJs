@@ -22,6 +22,8 @@ const john = new Person("john", "john@example.com", "10-3-98");
 
 - console.log(john)
 
+<img width="638" alt="스크린샷 2023-07-21 오전 11 53 54" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/5f08d57b-b30b-4bc7-b16c-fe1be129c8e3">
+
 ### Static 사용
 
 - prototype이 아닌 클래스 함수 자체에 메서드를 설정할 수도 있다.
