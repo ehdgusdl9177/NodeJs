@@ -49,4 +49,5 @@ class Person {
     }
 }
 console.log(Person.multipleNumbers(2, 9))
+console.log(Person.multipleNumbers(4, 8))
 ```
