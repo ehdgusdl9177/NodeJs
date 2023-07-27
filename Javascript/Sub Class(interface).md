@@ -31,6 +31,8 @@ const john = new Client("jonh", "jpon@abc.com", "010-0000-1111", "서울");
 
 ### 관계도
 
+<img width="453" alt="스크린샷 2023-07-27 오후 1 42 11" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/ede4abaa-92ee-4237-afa3-ee373dfff94b">
+
 ### john.introduce가 실행되는 순서
 
 1. client 객체에 client.introduce가 있는지 확인한다.
