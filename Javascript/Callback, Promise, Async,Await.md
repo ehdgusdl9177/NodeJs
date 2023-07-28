@@ -94,3 +94,43 @@ fetchData()
 
 <img width="579" alt="스크린샷 2023-07-28 오후 3 59 45" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/3d09eb7f-9ba7-4ed2-92d1-7d51281b658f">
 
+- 대기 중인 프로미스는 값과 함께 이행할 수도, 어떤 이유(오류)로 인해 거부될 수도 있다.
+- 이행이나 거부될 때, 프로미스의 then 메서드에 의해 대기열(큐)에 추가된 처리기들이 호출된다.
+- 이미 이행했거나 거부된 프로미스에 처리기를 연결해도 호출되므로, 비동기 연산과 처리기 연결 사이에 경합 조건은 없다.
+
+```js
+myPromise
+  .then((result) => {
+    console.log(result); // resolve 값이 여기로
+  })
+  .then((err) => {
+    console.log(err); // reject 값이 여기로
+  })
+  .finally(() => {
+    console.log("모든 작업 끝"); // 이행이든 거부든 모두 마지막엔 여기로
+  });
+```
+
+- 실제로 비동기 요청 두 개를 보내기
+
+```js
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  .then((response1) => response1.json())
+  .then((json) => console.log(json))
+  .then(() => fetch("https://jsonplaceholder.typicode.com/todos/2"))
+  .then((response2) => response2.json())
+  .then((json) => console.log(json))
+  .catch((err) => console.log(err))
+  .finally(() => console.log("모든 작업 끝"));
+```
+
+```js
+{ userId: 1, id: 1, title: 'delectus aut autem', completed: false }
+{
+  userId: 1,
+  id: 2,
+  title: 'quis ut nam facilis et officia qui',
+  completed: false
+}
+모든 작업 끝
+```
