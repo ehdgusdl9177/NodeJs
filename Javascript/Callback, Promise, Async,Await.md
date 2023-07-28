@@ -91,3 +91,6 @@ fetchData()
   - 대기(Pending): 비동기 처리 로직이 아직 완료되지 않은 상태
   - 이행(fulfilled): 비동기 처리가 완료되어 프로미스가 결과 값을 반환해준 상태
   - 거부(rejected): 비동기 처리가 실패하거나 오류가 발생한 상태
+
+<img width="579" alt="스크린샷 2023-07-28 오후 3 59 45" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/3d09eb7f-9ba7-4ed2-92d1-7d51281b658f">
+
