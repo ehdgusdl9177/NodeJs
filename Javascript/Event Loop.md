@@ -34,6 +34,8 @@ console.log("3"); // 동기
 ### 둘의 차이
 
 - 동기는 먼저 이전의 것이 끝나야 다음 것을 할 수 있찌만 비동기는 1번을 하면서 2번을 할 수 있고 3, 4번도 할 수 있다.
+  
+<img width="514" alt="스크린샷 2023-07-28 오후 3 11 00" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/858edf08-8d97-4d44-927e-0bed9cdcca40">
 
 ### Javascript는 동기 언어이다.
 
