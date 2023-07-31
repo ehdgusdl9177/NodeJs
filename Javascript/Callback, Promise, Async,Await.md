@@ -134,3 +134,84 @@ fetch("https://jsonplaceholder.typicode.com/todos/1")
 }
 모든 작업 끝
 ```
+
+- Promise.all()
+  - Promise.all() 메서드는 순회 가능한 객체에 주어진 모든 프로미스가 이행한 후, 혹은 프로미스가 주어지지 않았을 때 이행하는 Promise를 반환한다.
+  - 주어진 프로미스 중 하나가 거부하는 경우, 첫 번째로 거절한 프로미스의 이유를 사용해 자신도 거부한다.
+
+```js
+const promise1 = Promise.resolve(3);
+const promise2 = 42;
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 3000, "foo");
+});
+
+Promise.all([promise1, promise2, promise3]).then((values) => {
+  console.log(values);
+});
+// expected output: Array [3, 42, "foo"]
+```
+
+- Promise.race()
+  - Promise.race() 메서드는 Promise 객체를 반환한다.
+  - 이 프로미스 객체는 iterable 안에 있는 프로미스 중에 가장 먼저 완료된 것의 결괏값으로 그대로 이행하거나 거부한다.
+
+```js
+const promise1 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 500, "one");
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, "two");
+});
+
+Promise.race([promise1, promise2]).then((value) => {
+  console.log(value);
+  // Both resolve, but promise2 is faster
+});
+
+// expected output: "two"
+```
+
+### Async Await
+
+```js
+fetch("https://jsonplaceholder.typicode.com/todos/1")
+  .then((response1) => response1.json())
+  .then((json) => console.log(json))
+  .then(() => fetch("https://jsonplaceholder.typicode.com/todos/2"))
+  .then((response2) => response2.json())
+  .then((json) => console.log(json))
+  .catch((err) => console.log(err))
+  .finally(() => console.log("모든 작업 끝"));
+```
+
+- 아래와 같이 변환
+
+```js
+async function makeRequests() {
+  try {
+    const response1 = await fetch(
+      "https://jsonplaceholder.typicode.com/todos/1"
+    );
+    const jsonRequest = await response1.json();
+    console.log("jsonResponse1", jsonResponse1);
+
+    const response2 = await fetch(
+      "https://jsonplaceholder.typicode.com/todos/2"
+    );
+    const jsonResponse2 = await response2.json();
+    console.log("jsonResponse2", jsonResponse2);
+  } catch (error) {
+    console.log(error);
+  } finally {
+    console.log("모든 작업 끝");
+  }
+}
+makeRequests();
+```
+
+- 비동기 코드를 마치 동기 코드처럼 보인다
+- Promise에 then 메서드를 체인형식으로 호출하는 것보다 가독성이 좋다.
+- await는 async 내부 함수에서만 사용할 수 있다.
+- 동기식 코드에서 쓰는 try...catch 구문을 async/await 구조에서 사용할 수 있다
