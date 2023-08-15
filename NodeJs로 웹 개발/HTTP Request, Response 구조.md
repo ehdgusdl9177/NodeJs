@@ -28,6 +28,6 @@
 - Reqeust의 headers와 동일하다
 - 하지만 Response Headers에서만 쓰이는 값도 있다.
 3. body
-- Response의 body와 일반적으로 동일하다.
+- Response의 body와 일반적으로 동일하다
 
 <img width="760" alt="스크린샷 2023-08-14 오후 1 29 54" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/d869a9a5-e825-4f7c-a231-44136e0ca5ef">
