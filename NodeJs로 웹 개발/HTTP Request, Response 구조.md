@@ -31,3 +31,6 @@
 - Response의 body와 일반적으로 동일하다
 
 <img width="760" alt="스크린샷 2023-08-14 오후 1 29 54" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/d869a9a5-e825-4f7c-a231-44136e0ca5ef">
+<img width="757" alt="스크린샷 2023-08-16 오후 3 17 12" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/5077ce39-03f7-4f20-862f-d38d0782ed5b">
+<img width="761" alt="스크린샷 2023-08-16 오후 3 17 21" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/ed5d3d40-2147-4b94-b0fc-14ab1e94913d">
+<img width="755" alt="스크린샷 2023-08-16 오후 3 17 36" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/b1c82891-0884-4d44-b849-c05b0166fb92">
