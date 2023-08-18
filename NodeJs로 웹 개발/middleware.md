@@ -9,4 +9,7 @@
 - next 미드루에어 기능은 일반적으로 next 변수로 표시된다.
 
 ![스크린샷 2023-08-18 오후 2 38 04](https://github.com/ehdgusdl9177/NodeJs/assets/75515697/09f9837b-1020-4cf9-b90c-c34aabcc10a2)
+
+- Express 애플리케이션은 본질적으로 일련의 미드루에어 기능 호출이다.
+
 ![스크린샷 2023-08-18 오후 2 38 20](https://github.com/ehdgusdl9177/NodeJs/assets/75515697/eff65b32-cff2-4b1c-962c-526dbe016758)
