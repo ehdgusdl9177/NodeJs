@@ -11,3 +11,5 @@
 
 - REST(Representational State Tranfer)는 처음에 인터넷과 같은 복잡한 네트워크에서 통신을 관리하기 위한 지침
 - 이 덕분에 REST 기반의 아키텍처를 사용해서 대규모 고성능 통신을 안정적으로 지원
+
+<img width="809" alt="스크린샷 2023-08-21 오후 4 18 04" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/7357c3f7-6cec-4a3e-a60a-a68c028c8a25">
