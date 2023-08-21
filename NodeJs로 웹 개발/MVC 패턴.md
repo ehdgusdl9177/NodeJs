@@ -8,9 +8,13 @@
 - MVC(모델 - 뷰 - 컨트롤러)는 사용자 인터페이스, 데이터 및 논리제어를 구현하는데 널리 사용되는 소프트웨어 디자인 패턴이다.
 - 소프트웨어의 비즈니스 로직과 화면을 구분하는데 중점을 두고 있다.
 
+<img width="201" alt="스크린샷 2023-08-21 오후 3 34 15" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/e5611f57-db00-456b-abbb-59c0a50613bc">
+
 - Model: 데이터와 비즈니스 로직을 관리한다.
 - View: 레이아웃과 화면을 처리한다.
 - Controller: 명령을 모델과 뷰 부분으로 라우팅한다.
+
+<img width="672" alt="스크린샷 2023-08-21 오후 3 34 27" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/e9c1cb56-131a-49a4-a056-b5cf9a96420a">
 
 ### Model
 
