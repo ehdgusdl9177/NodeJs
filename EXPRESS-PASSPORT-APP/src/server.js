@@ -6,6 +6,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
 mongoose.set("strictQuery", false);
 
 mongoose
@@ -20,6 +24,14 @@ mongoose
   });
 
 app.use("/static", express.static(path.join(__dirname, "public")));
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.get("/signup", (req, res) => {
+  res.render("signup");
+});
 
 const port = 4000;
 app.listen(port, () => {
