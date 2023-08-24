@@ -1,13 +1,14 @@
 const express = require("express");
 const path = require("path");
 const { default: mongoose } = require("mongoose");
-const User = require("./models/users.model");
 const passport = require("passport");
 const cookieSession = require("cookie-session");
-const {
-  checkAuthenticated,
-  checkNotAuthenticated,
-} = require("./middleware/auth");
+const config = require("config");
+const mainRouter = require("./routes/main.router");
+const usersRouter = require("./routes/users.router");
+const serverConfig = config.get("server");
+
+const port = serverConfig.port;
 const app = express();
 
 require("dotenv"), config();
@@ -58,73 +59,9 @@ mongoose
 
 app.use("/static", express.static(path.join(__dirname, "public")));
 
-app.get("/", checkAuthenticated, (req, res, next) => {
-  res.render("index");
-});
+app.use("/", mainRouter);
+app.use("/auth", usersRouter);
 
-app.get("/login", checkNotAuthenticated, (req, res, next) => {
-  res.render("login");
-});
-
-app.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
-
-    if (!user) {
-      return res.json({ message: info });
-    }
-
-    req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
-      res.redirect("/");
-    });
-  })(req, res, next);
-});
-
-app.post("/logout", (req, res, next) => {
-  req.logOut((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/login");
-  });
-});
-
-app.get("/signup", checkNotAuthenticated, (req, res, next) => {
-  res.render("signup");
-});
-
-app.post("/signup", async (req, res) => {
-  // user 객체를 생성한다.
-  const user = new User(req.body);
-  try {
-    // user 컬렉션에 유저를 저장한다.
-    await user.save();
-    return res.status(200).json({
-      success: true,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-app.get("/auth/google", passport.authenticate("google"));
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    successReturnToOrRedirect: "/",
-    failureRedirect: "/login",
-  })
-);
-
-const config = require("config");
-const serverConfig = config.get("server");
-
-const port = serverConfig.port;
 app.listen(port, () => {
   console.log("listening on port " + port);
 });
