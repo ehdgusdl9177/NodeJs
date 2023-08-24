@@ -10,12 +10,12 @@ const {
 } = require("./middleware/auth");
 const app = express();
 
-const cookieEncryptionKey = ["supersecret-key"];
+require("dotenv"), config();
 
 app.use(
   cookieSession({
     name: "cookie-session-name",
-    keys: [cookieEncryptionKey],
+    keys: [process.env.COOKIE_ENCRYPTION_KEY],
   })
 );
 
@@ -48,9 +48,7 @@ app.set("view engine", "ejs");
 mongoose.set("strictQuery", false);
 
 mongoose
-  .connect(
-    "mongodb+srv://k23129177:qwer1234@expree-cluster.9j385iu.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to Mongo");
   })
@@ -114,7 +112,19 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-const port = 4000;
+app.get("/auth/google", passport.authenticate("google"));
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    successReturnToOrRedirect: "/",
+    failureRedirect: "/login",
+  })
+);
+
+const config = require("config");
+const serverConfig = config.get("server");
+
+const port = serverConfig.port;
 app.listen(port, () => {
   console.log("listening on port " + port);
 });
