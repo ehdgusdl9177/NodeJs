@@ -2,6 +2,7 @@ const passport = require("passport");
 const User = require("../models/users.model");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const KakaoStrategy = require("passport-kakao").Strategy;
 
 // req.login(user)
 passport.serializeUser((user, done) => {
@@ -68,3 +69,28 @@ const GoogleStrategyConfig = new GoogleStrategy(
 );
 
 passport.use("google", GoogleStrategyConfig);
+
+const kakaoStrategyConfig = new KakaoStrategy(
+  {
+    clientID: process.env.KAKAO_CLIENT_ID,
+    callbackURL: "auth/kakao/callback",
+  },
+  (accessToken, refreshToken, profile, done) => {
+    User.findOne({ kakaoId: profile.id }, (err, existingUser) => {
+      if (err) return done(err);
+      if (existingUser) {
+        return done(null, existingUser);
+      } else {
+        const user = new User();
+        user.kakaoId = profile.id;
+        user.email = profile._json.kakao_account.email;
+        user.save((err) => {
+          if (err) return done(err);
+          done(null, user);
+        });
+      }
+    });
+  }
+);
+
+passport.use("kakao", kakaoStrategyConfig);
