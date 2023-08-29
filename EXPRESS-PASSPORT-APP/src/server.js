@@ -1,17 +1,18 @@
+const cookieSession = require("cookie-session");
 const express = require("express");
-const path = require("path");
 const { default: mongoose } = require("mongoose");
 const passport = require("passport");
-const cookieSession = require("cookie-session");
+const app = express();
+const path = require("path");
+
 const config = require("config");
 const mainRouter = require("./routes/main.router");
 const usersRouter = require("./routes/users.router");
 const serverConfig = config.get("server");
 
 const port = serverConfig.port;
-const app = express();
 
-require("dotenv"), config();
+require("dotenv").config();
 
 app.use(
   cookieSession({
@@ -21,7 +22,7 @@ app.use(
 );
 
 // register regenerate & save after the cookieSession middleware initialization
-app.use(function (request, response, next) {
+app.use((request, response, next) => {
   if (request.session && !request.session.regenerate) {
     request.session.regenerate = (cb) => {
       cb();
@@ -54,10 +55,10 @@ mongoose
     console.log("Connected to Mongo");
   })
   .catch((err) => {
-    console.log("Error connecting");
+    console.log(err);
   });
 
-app.use("/static", express.static(path.join(__dirname, "public")));
+app.use("/static", express.static(path.join(__dirname, "../public")));
 
 app.use("/", mainRouter);
 app.use("/auth", usersRouter);

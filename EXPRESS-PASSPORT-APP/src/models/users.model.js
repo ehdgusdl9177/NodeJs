@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bycryptjs");
+const bcrypt = require("bcryptjs");
 
 const userSchema = mongoose.Schema({
   email: {
@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
     sparse: true,
   },
 });
-
+const saltRounds = 10;
 userSchema.pre("save", (next) => {
   let user = this;
   // 비밀번호가 변경될 때만

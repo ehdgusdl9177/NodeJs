@@ -15,9 +15,7 @@ usersRouter.post("/login", (req, res, next) => {
     }
 
     req.logIn(user, (err) => {
-      if (err) {
-        return next(err);
-      }
+      if (err) return next(err);
       res.redirect("/");
     });
   })(req, res, next);
@@ -25,9 +23,7 @@ usersRouter.post("/login", (req, res, next) => {
 
 usersRouter.post("/logout", (req, res, next) => {
   req.logOut((err) => {
-    if (err) {
-      return next(err);
-    }
+    if (err) return next(err);
     res.redirect("/login");
   });
 });

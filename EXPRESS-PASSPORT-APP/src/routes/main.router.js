@@ -5,15 +5,15 @@ const {
   checkNotAuthenticated,
 } = require("../middleware/auth");
 
-mainRouter.get("/", checkAuthenticated, (req, res, next) => {
+mainRouter.get("/", checkAuthenticated, (req, res) => {
   res.render("index");
 });
 
-amainRouter.get("/login", checkNotAuthenticated, (req, res, next) => {
+mainRouter.get("/login", checkNotAuthenticated, (req, res) => {
   res.render("login");
 });
 
-mainRouter.get("/signup", checkNotAuthenticated, (req, res, next) => {
+mainRouter.get("/signup", checkNotAuthenticated, (req, res) => {
   res.render("signup");
 });
 
