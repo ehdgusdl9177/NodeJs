@@ -61,6 +61,10 @@ mongoose
 
 app.use("/static", express.static(path.join(__dirname, "../public")));
 
+app.use((error, req, res, next) => {
+  res.json({ message: error.message });
+});
+
 app.use("/", mainRouter);
 app.use("/auth", usersRouter);
 app.use("/products", productsRouter);
