@@ -8,6 +8,7 @@ const path = require("path");
 const config = require("config");
 const mainRouter = require("./routes/main.router");
 const usersRouter = require("./routes/users.router");
+const productsRouter = require("./routes/products.router");
 const serverConfig = config.get("server");
 
 const port = serverConfig.port;
@@ -62,6 +63,7 @@ app.use("/static", express.static(path.join(__dirname, "../public")));
 
 app.use("/", mainRouter);
 app.use("/auth", usersRouter);
+app.use("/products", productsRouter);
 
 app.listen(port, () => {
   console.log("listening on port " + port);
