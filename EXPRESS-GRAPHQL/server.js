@@ -11,6 +11,13 @@ const loadedTypes = loadFilesSync("**/*", {
 
 const schema = makeExecutableSchema({
   typeDefs: [loadedTypes],
+  resolvers: {
+    Query: {
+      posts: (parent, args, context, info) => {
+        return parent.posts;
+      },
+    },
+  },
 });
 
 const root = {
