@@ -5,5 +5,8 @@ module.exports = {
     comments: () => {
       return commentsModel.getAllComments();
     },
+    commentsByLikes: (_, args) => {
+      return commentsModel.getCommentsByLikes(args.minLikes);
+    },
   },
 };
