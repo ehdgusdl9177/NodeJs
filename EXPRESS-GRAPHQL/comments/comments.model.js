@@ -26,7 +26,18 @@ const getCommentsByLikes = (minLikes) => {
   });
 };
 
+const addNewComment = (id, text) => {
+  const newComment = {
+    id,
+    text,
+    likes: 0,
+  };
+  comments.push(newComment);
+  return newComment;
+};
+
 module.exports = {
   getAllComments,
   getCommentsByLikes,
+  addNewComment,
 };
