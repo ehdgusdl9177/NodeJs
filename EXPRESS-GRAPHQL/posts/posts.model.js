@@ -23,6 +23,13 @@ const getAllPosts = () => {
   return posts;
 };
 
+const getPostById = (id) => {
+  return posts.find((post) => {
+    return post.id === id;
+  });
+};
+
 module.exports = {
   getAllPosts,
+  getPostById,
 };
