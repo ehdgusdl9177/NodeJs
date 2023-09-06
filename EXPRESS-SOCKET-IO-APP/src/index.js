@@ -4,13 +4,23 @@ const path = require("path");
 
 const http = require("http");
 const { Server } = require("socket.io");
+const { addUser } = require("./utils/users");
 const server = http.createServer(app);
 const io = new Server(server);
 
 io.on("connection", (socket) => {
   console.log("socket", socket.id);
 
-  socket.on("join", () => {});
+  socket.on("join", (options, callback) => {
+    console.log(option, callback);
+    const { error, user } = addUser({ id: socket.id, ...options });
+
+    if (error) {
+      return callback(error);
+    }
+
+    socket.join(user.room);
+  });
   socket.on("message", () => {});
   socket.on("disconnect", () => {
     console.log("disconnect", socket.id);
