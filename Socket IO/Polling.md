@@ -31,9 +31,15 @@ setInterval(() => {
 - 클라이언트에서 서버에 요청을 보내고 끊기지 않는 연결 상태에서 계속 데이터를 수신한다.
 - 양 방향 소통보다는 서버에서 계속 요청을 받는 것에 더 유용하다.
 
+<img width="764" alt="스크린샷 2023-09-06 오전 10 27 26" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/38c957ab-8ef8-4ed4-9dbc-3d5e0d6ff188">
+
 - Polling, Long Polling, HTTP Straming 이 세가지의 공통점은 결국 HTTP 프로토콜을 이용하며 이 HTTP 요청과 응답에 Header가 같이 전달되는데 이 Header에 많은 데이터가 들어 있어서 너무 많은 요청과 응답의 교환은 부담을 주게 된다.
+
+<img width="767" alt="스크린샷 2023-09-06 오전 10 27 36" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/fdf5d1dc-b836-40bc-a0c4-67102fbd6a2c">
 
 ### HTTP 통신 방법과 WebSocket의 차이점
 
 - WebSocket은 처음에 접속 확립(Handshake)을 위해서만 HTTP 프로토콜을 이용하고 그 이후 부터는 독립적인 프로토콜 ws를 사용하게 된다.
 - 또한 HTTP 요청은 응답이 온 후 연결이 끊기게 되지만 WebSocket은 핸드 쉐이크가 완료되고 임의로 연결을 끊기 전까지는 계속 연결이 되어 있다.
+
+<img width="429" alt="스크린샷 2023-09-06 오전 10 32 53" src="https://github.com/ehdgusdl9177/NodeJs/assets/75515697/f0c03e94-4812-48c4-ad77-cb442d8a2f1b">
