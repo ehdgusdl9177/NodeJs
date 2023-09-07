@@ -11,3 +11,15 @@ socket.emit("join", { username, room }, (error) => {
     location.href = "/";
   }
 });
+
+const sidebarTemplate = document.querySelector("#siderbar-template").innerHTML;
+
+socket.on("roomData", ({ room, users }) => {
+  const html = Mustache.render(sidebarTemplate, {
+    room,
+    users,
+  });
+  document.querySelector("#sidebar").innerHTML = html;
+});
+
+socket.on("message");

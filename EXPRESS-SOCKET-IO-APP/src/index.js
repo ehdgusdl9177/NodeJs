@@ -4,7 +4,8 @@ const path = require("path");
 
 const http = require("http");
 const { Server } = require("socket.io");
-const { addUser } = require("./utils/users");
+const { addUser, getUsersInRoom } = require("./utils/users");
+const { generateMessage } = require("./utils/messages");
 const server = http.createServer(app);
 const io = new Server(server);
 
@@ -12,7 +13,7 @@ io.on("connection", (socket) => {
   console.log("socket", socket.id);
 
   socket.on("join", (options, callback) => {
-    console.log(option, callback);
+    console.log(options, callback);
     const { error, user } = addUser({ id: socket.id, ...options });
 
     if (error) {
@@ -20,7 +21,24 @@ io.on("connection", (socket) => {
     }
 
     socket.join(user.room);
+
+    socket.emit(
+      "message",
+      generateMessage("Admin", `${user.room} 방에 오신 걸 환영합니다.`)
+    );
+    socket.broadcast
+      .to(user.room)
+      .emit(
+        "message",
+        generateMessage("", `${user.username}가 방에 참여했습니다.`)
+      );
+
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
   });
+
   socket.on("message", () => {});
   socket.on("disconnect", () => {
     console.log("disconnect", socket.id);
