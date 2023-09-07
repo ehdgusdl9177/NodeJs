@@ -12,7 +12,7 @@ socket.emit("join", { username, room }, (error) => {
   }
 });
 
-const sidebarTemplate = document.querySelector("#siderbar-template").innerHTML;
+const sidebarTemplate = document.querySelector("#sidebar-template").innerHTML;
 
 socket.on("roomData", ({ room, users }) => {
   const html = Mustache.render(sidebarTemplate, {
