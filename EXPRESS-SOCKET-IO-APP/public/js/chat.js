@@ -1,9 +1,11 @@
 const socket = io();
 
-const query = new URLSearchParams(location.serach);
-
+const query = new URLSearchParams(location.search);
+// '?username=John&room=Roomy'
 const username = query.get("username");
+// 'John'
 const room = query.get("room");
+// 'Roomy'
 
 socket.emit("join", { username, room }, (error) => {
   if (error) {
@@ -19,10 +21,11 @@ socket.on("roomData", ({ room, users }) => {
     room,
     users,
   });
+
   document.querySelector("#sidebar").innerHTML = html;
 });
 
-const messages = document.querySelectorAll("#messages");
+const messages = document.querySelector("#messages");
 const messageTemplate = document.querySelector("#message-template").innerHTML;
 socket.on("message", (message) => {
   const html = Mustache.render(messageTemplate, {
@@ -38,3 +41,25 @@ socket.on("message", (message) => {
 function scrollToBottom() {
   messages.scrollTop = messages.scrollHeight;
 }
+
+const messageForm = document.querySelector("#message-form");
+const messageFormInput = messageForm.querySelector("input");
+const messageFormButton = messageForm.querySelector("button");
+
+messageForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  messageFormButton.setAttribute("disabled", "disabled");
+
+  const message = e.target.elements.message.value;
+
+  socket.emit("sendMessage", message, (error) => {
+    messageFormButton.removeAttribute("disabled");
+    messageFormInput.value = "";
+    messageFormInput.focus();
+
+    if (error) {
+      return console.log(error);
+    }
+  });
+});

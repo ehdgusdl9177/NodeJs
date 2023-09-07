@@ -1,19 +1,24 @@
 const express = require("express");
+
 const app = express();
-const path = require("path");
 
 const http = require("http");
-const { Server } = require("socket.io");
-const { addUser, getUsersInRoom } = require("./utils/users");
-const { generateMessage } = require("./utils/messages");
+const path = require("path");
 const server = http.createServer(app);
+const { Server } = require("socket.io");
+const { generateMessage } = require("./utils/messages");
+const {
+  addUser,
+  getUsersInRoom,
+  getUser,
+  removeUser,
+} = require("./utils/users");
 const io = new Server(server);
 
 io.on("connection", (socket) => {
   console.log("socket", socket.id);
 
   socket.on("join", (options, callback) => {
-    console.log(options, callback);
     const { error, user } = addUser({ id: socket.id, ...options });
 
     if (error) {
@@ -30,7 +35,7 @@ io.on("connection", (socket) => {
       .to(user.room)
       .emit(
         "message",
-        generateMessage("", `${user.username}가 방에 참여했습니다.`)
+        generateMessage("Admin", `${user.username}가 방에 참여했습니다.`)
       );
 
     io.to(user.room).emit("roomData", {
@@ -38,10 +43,27 @@ io.on("connection", (socket) => {
       users: getUsersInRoom(user.room),
     });
   });
+  socket.on("sendMessage", (message, callback) => {
+    const user = getUser(socket.id);
 
-  socket.on("message", () => {});
+    io.to(user.room).emit("message", generateMessage(user.username, message));
+    callback();
+  });
+
   socket.on("disconnect", () => {
-    console.log("disconnect", socket.id);
+    console.log("socket disconnected", socket.id);
+    const user = removeUser(socket.id);
+
+    if (user) {
+      io.to(user.room).emit(
+        "message",
+        generateMessage("Admin", `${user.username}가 방을 나갔습니다.`)
+      );
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
+    }
   });
 });
 
